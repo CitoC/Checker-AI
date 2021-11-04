@@ -42,4 +42,3 @@ Move ManualAI::GetMove(Move move)
     board.makeMove(res,player);
     return res;
 }
-
