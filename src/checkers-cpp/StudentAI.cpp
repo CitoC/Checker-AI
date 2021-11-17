@@ -32,10 +32,33 @@ Move StudentAI::GetMove(Move move)
     vector<Move> checker_moves = moves[i];
     int j = rand() % (checker_moves.size());
 
-    Move res = checker_moves[j];
-
-    cout <<  "i = " << i << " , j = " << j << endl;
+    Move res = checker_moves[j]; 
+    // cout <<  "i = " << i << " , j = " << j << endl;
     board.makeMove(res,player);
 
     return res;
 }
+
+Move MonteCarloTreeSearch::GetBestMove()
+{
+    // SELECT
+    // Select a child node, for me and for my opponent. Select the child node of the current node.
+    // If it's for me, select using UCT. If for opponent, randomly select. 
+    // Repeatedly do this until reach terminal state or non-terminal state that is unvisisted.
+    // Repeatedly select 
+
+    // EXPAND
+    // One or more child nodes are added to expand the tree, according to the available actions.
+    // Expand all possiblities and add them to the tree??
+
+    // SIMULATE
+    // BACK-PROPOGATE
+    Move res;
+    while(true)
+    {
+        
+    }
+
+    return res;
+}
+
