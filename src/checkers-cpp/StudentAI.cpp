@@ -12,35 +12,36 @@ StudentAI::StudentAI(int col,int row,int p)
     // cout << p << endl;
     // board.getAllPossibleMoves(0);
     board.showBoard();
-
     board = Board(col,row,p);
     board.initializeGame();
-    player = 2; // Changed from 1 to 2 stopped the crash. Wtf?
+    player = 2; 
 }
 
+// The parameter move is opponent's move 
 Move StudentAI::GetMove(Move move)
 {
+    // The very first move
     if (move.seq.empty()){
         player = 1;
     }
+    // If I am player 1, then this move is for my opponent who is player 2
+    // If I am player 2, then this move is for my opponent who is player 1
     else{
         board.makeMove(move,player == 1?2:1);
     } 
+
+    // root node of the tree
+    // parentNode is null?
+    Node* root = new Node;
+    root->myTurn = true;
+    root->parentNode = nullptr;
+    root->theMove = move;
+    root->uctValue = 0;
+    root->visitCount = 0;
+    root->winCount = 0;
+
     vector<vector<Move> > moves = board.getAllPossibleMoves(player);
-    srand(time(NULL));
-    int i = rand() % (moves.size());
-    vector<Move> checker_moves = moves[i];
-    int j = rand() % (checker_moves.size());
 
-    Move res = checker_moves[j]; 
-    // cout <<  "i = " << i << " , j = " << j << endl;
-    board.makeMove(res,player);
-
-    return res;
-}
-
-Move MonteCarloTreeSearch::GetBestMove()
-{
     // SELECT
     // Select a child node, for me and for my opponent. Select the child node of the current node.
     // If it's for me, select using UCT. If for opponent, randomly select. 
@@ -53,12 +54,45 @@ Move MonteCarloTreeSearch::GetBestMove()
 
     // SIMULATE
     // BACK-PROPOGATE
-    Move res;
-    while(true)
+
+
+
+    Move res = 0;
+    board.makeMove(res,player);
+    return res;
+
+    // Code for making random move
+    // srand(time(NULL));
+    // int i = rand() % (moves.size());
+    // vector<Move> checker_moves = moves[i];
+    // int j = rand() % (checker_moves.size());
+    // Move res = checker_moves[j]; 
+    // GetBestMove();
+}
+
+
+// Move MonteCarloTreeSearch::GetBestMove()
+// {
+//     Move res;
+//     while(true)
+//     {
+//         cout << "Hello" << endl;
+//     }
+
+//     return res;
+// }
+
+Node MCTSBestMove(Node root)
+{
+    for (int i = 0; i < 500; i++) 
     {
-        
+        // 
     }
 
-    return res;
+
+    Node verygood;
+    return verygood;
+
 }
+
 

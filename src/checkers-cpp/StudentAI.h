@@ -6,34 +6,59 @@
 
 //The following part should be completed by students.
 //Students can modify anything except the class name and exisiting functions and varibles.
-struct Node
-{
-	vector<Node> childNode;
-	Node* parentNode;
-};
 
-struct State
-{
-
-};
 
 class StudentAI :public AI
 {
 public:
-    Board board;
 	StudentAI(int col, int row, int p);
 	virtual Move GetMove(Move board);
+public:
+    Board board;
 };
 
 class MonteCarloTreeSearch
 {
 public:
-	Move GetBestMove();
+	// Move GetBestMove();
 	int player;
 };
 
+// FUNCTIONS //
+struct Node
+{
+	vector<Node*> childNode;
+	Node* parentNode;
+	int winCount;
+	int visitCount;
+	bool myTurn;
+	Move theMove;
+	double uctValue;
+};
+
+Node MCTSBestMove(Node root);
+// function for selection
+// function for expansion
+// function for simulation
+// function for backpropogation
+
+
 #endif //STUDENTAI_H
 
+
+
+// SELECT
+// Select a child node, for me and for my opponent. Select the child node of the current node.
+// If it's for me, select using UCT. If for opponent, randomly select. 
+// Repeatedly do this until reach terminal state or non-terminal state that is unvisisted.
+// Repeatedly select 
+
+// EXPAND
+// One or more child nodes are added to expand the tree, according to the available actions.
+// Expand all possiblities and add them to the tree??
+
+// SIMULATE
+// BACK-PROPOGATE
 
 // Checker AI Thought Process
 // Choose an optimal move against an optimal opponent
@@ -52,4 +77,6 @@ public:
 // Current location of the pieces on the board
 // 
 // What is state of the game?
-// State of the game corresponds to 
+// State of the game corresponds to
+
+// How to turn states into nodes?
